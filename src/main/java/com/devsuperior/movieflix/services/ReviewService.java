@@ -1,5 +1,8 @@
 package com.devsuperior.movieflix.services;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +43,11 @@ public class ReviewService {
 		Review savedReview = reviewRepository.save(review);
 		
 		return new ReviewDTO(savedReview);
+	}
+
+	public List<ReviewDTO> findReviewsByMovieId(Long movieId) {
+		List<Review> reviewsByMovie = reviewRepository.findAllByMovie(movieId);
+		return reviewsByMovie.stream().map(r -> new ReviewDTO(r)).collect(Collectors.toList());
 	}
 
 }
