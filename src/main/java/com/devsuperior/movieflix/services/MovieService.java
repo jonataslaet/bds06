@@ -51,7 +51,7 @@ public class MovieService {
 		movie = movieOptional.get();
 //		Optional<Genre> genreOptional = genreRepository.findById(genreId);
 		
-		return new MovieDTO(movie);
+		return new MovieDTO(movie, movie.getReviews());
 	}
 
 }
